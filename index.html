@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio BTS SIO - Léo Texier</title>
+    <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), 
+                        url('https://images.unsplash.com/photo-1593642532973-d31b6557fa68?fit=crop&w=1920&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, .logo { font-family: 'Patua One', cursive; }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky; top: 0; z-index: 1000;
+            border-bottom: 2px solid #a0c4ff;
+        }
+        .nav-buttons { display: flex; gap: 10px; }
+        .nav-link {
+            color: white; padding: 10px 20px; border-radius: 20px;
+            text-decoration: none; transition: 0.3s; background: rgba(255,255,255,0.1);
+        }
+        .nav-link:hover, .nav-link.active { background: #a0c4ff; color: black; }
+
+        .dropdown { position: relative; }
+        .dropdown-content {
+            display: none; position: absolute; background: rgba(0,0,0,0.95);
+            min-width: 220px; border-radius: 10px; top: 100%; right: 0;
+        }
+        .dropdown:hover .dropdown-content { display: block; }
+        .dropdown-content a { color: white; padding: 12px; display: block; text-decoration: none; }
+        .dropdown-content a:hover { background: #a0c4ff; color: black; }
+
+        .content-container { padding: 40px 10%; }
+        section { display: none; animation: fadeIn 0.5s ease; }
+        section.active { display: block; }
+
+        .bubble-container { display: flex; flex-direction: column; gap: 20px; margin-top: 30px; }
+        .text-bubble {
+            background: rgba(248, 240, 240, 0.95); color: #333; padding: 25px;
+            border-radius: 15px; max-width: 800px; position: relative;
+            line-height: 1.6; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .text-bubble h3 { color: #6a5acd; margin-bottom: 12px; }
+        .text-bubble:nth-of-type(odd) { align-self: flex-start; border-bottom-left-radius: 0; }
+        .text-bubble:nth-of-type(even) { align-self: flex-end; border-bottom-right-radius: 0; }
+
+        .video-container { width: 100%; max-width: 600px; margin: 20px auto; border-radius: 10px; overflow: hidden; }
+        video { width: 100%; display: block; }
+
+        .btn-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 20px; }
+        .btn-link {
+            background: #a0c4ff; color: black; padding: 12px 20px; border-radius: 15px;
+            text-decoration: none; font-weight: bold; transition: 0.3s;
+        }
+        .btn-link:hover { transform: translateY(-3px); background: white; }
+
+        .sentence-end-bubble {
+            display: inline-block; width: 12px; height: 12px; background-color: #a0c4ff;
+            border-radius: 50%; margin-left: 8px; animation: pulse 1.5s infinite alternate;
+        }
+        @keyframes pulse { from { transform: scale(1); } to { transform: scale(1.2); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        footer { text-align: center; padding: 40px 20px; background: rgba(0, 0, 0, 0.95); border-top: 2px solid #a0c4ff; margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Léo Texier</div>
+    <div class="nav-buttons">
+        <a href="#" class="nav-link active" onclick="show('accueil')">Accueil</a>
+        <a href="#" class="nav-link" onclick="show('a-propos')">À Propos</a>
+        <a href="#" class="nav-link" onclick="show('bts-sio')">BTS SIO</a>
+        <div class="dropdown">
+            <a href="#" class="nav-link">Projets & Stages <i class="fas fa-caret-down"></i></a>
+            <div class="dropdown-content">
+                <a href="#" onclick="show('ap-1')">Projet Iristech</a>
+                <a href="#" onclick="show('docs-tech')">Documentations</a>
+                <a href="#" onclick="show('stage-1')">Stage 1 (IDI)</a>
+                <a href="#" onclick="show('stage-orange')">Stage 2 (Orange)</a>
+            </div>
+        </div>
+        <a href="#" class="nav-link" onclick="show('veille')">Veilles</a>
+        <a href="#" class="nav-link" onclick="show('reseaux')">LinkedIn</a>
+    </div>
+</header>
+
+<div class="content-container">
+
+    <section id="accueil" class="active">
+        <div style="text-align: center; padding: 80px 0;">
+            <h1 style="font-size: 55px; color: #a0c4ff;">Bienvenue sur mon portfolio</h1>
+            <p style="font-size: 22px; margin-top: 20px; color: #cbd5e1;">Je suis Léo Texier, futur technicien supérieur en informatique spécialisé dans les systèmes et réseaux.</p>
+        </div>
+    </section>
+
+    <section id="a-propos">
+        <h2>À Propos de Moi</h2>
+        <div class="bubble-container">
+            <p class="text-bubble">Je m'appelle Léo Texier et j'ai actuellement <b>20 ans</b>. À l'issue de mon obtention de mon baccalauréat STMG, spécialité Systèmes d’Information de Gestion (SIG), j’ai souhaité approfondir mes compétences en informatique.<span class="sentence-end-bubble"></span></p>
+            <p class="text-bubble">J’ai suivi une formation de 5 mois pour obtenir le Titre Professionnel d’Installateur Dépanneur en Informatique (IDI), complétée par un stage d’un mois durant lequel j’avais pour mission le reconditionnement d’ordinateurs.<span class="sentence-end-bubble"></span></p>
+            <p class="text-bubble">Cette première expérience m’a permis d’acquérir des bases solides en maintenance informatique et en gestion de matériel.<span class="sentence-end-bubble"></span></p>
+        </div>
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="texier-leo-cv (5).pdf (2).pdf" class="btn-link" target="_blank">Mon CV</a>
+        </div>
+    </section>
+
+    <section id="bts-sio">
+        <h2>Le BTS SIO - Option SISR</h2>
+        <div class="bubble-container">
+            <div class="text-bubble">
+                <h3>Solutions d'Infrastructure, Systèmes et Réseaux</h3>
+                <p>Le BTS SIO option SISR permet d'apprendre l'administration des systèmes et des réseaux, en d'autres termes :<span class="sentence-end-bubble"></span></p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>La conception d'une solution d'infrastructure</li>
+                    <li>L'installation, le test et le déploiement d'une solution d'infrastructure réseau</li>
+                    <li>L'exploitation, le dépannage et la supervision d'une solution d'infrastructure réseau</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="stage-1">
+        <h2>Stage 1 : Installateur Dépanneur Informatique</h2>
+        <div class="bubble-container">
+            <p class="text-bubble">Ce stage m'a plongé dans le reconditionnement d'ordinateurs, incluant le diagnostic, la réparation matérielle, l'installation de systèmes d'exploitation et la réalisation de tests de performance pour assurer la qualité des machines remises à neuf.<span class="sentence-end-bubble"></span></p>
+        </div>
+        <div class="btn-row">
+            <a href="DP Léo (1).pdf" class="btn-link" target="_blank">Rapport de Stage</a>
+        </div>
+    </section>
+
+    <section id="stage-orange">
+        <h2>Stage 2 : Orange (Qualité Fibre)</h2>
+        <div class="bubble-container">
+            <p class="text-bubble">Ma mission actuelle chez <b>Orange</b> porte sur l'assurance qualité des données relatives à l'infrastructure fibre optique, un aspect crucial pour garantir la fiabilité et la performance des réseaux.<span class="sentence-end-bubble"></span></p>
+            <p class="text-bubble">Ce stage me permet d'analyser les flux de données réseau et de corriger les anomalies techniques pour optimiser le déploiement de la fibre.<span class="sentence-end-bubble"></span></p>
+        </div>
+        <div class="btn-row">
+            <a href="Rapport-Stage-Léo-TEXIER.pdf" class="btn-link" target="_blank">Rapport de Stage Orange</a>
+        </div>
+    </section>
+
+    <section id="docs-tech">
+        <h2>Documentations Techniques</h2>
+        <div class="btn-row">
+            <a href="mise-en-place-de-nginx.pdf" class="btn-link">Mise en place de Nginx</a>
+            <a href="mise-en-place-dun-serveur-web-apache.pdf" class="btn-link">Mise en place d'Apache</a>
+            <a href="Docu_glpi.pdf" class="btn-link">Documentation GLPI</a>
+            <a href="913721_af1e5c70730f42e3aeff323d209a9521-1.pdf" class="btn-link">Installation Windows 10</a>
+            <a href="Ajouter des utilisateurs et des ordinateurs au domaine Active Directory.pdf" class="btn-link">Active Directory</a>
+            <a href="installation-et-mise-en-place-dhcp-dns.pdf" class="btn-link">Installation DHCP-DNS</a>
+            <a href="installer-et-mettre-en-place-proxmox.pdf" class="btn-link">Installation Proxmox</a>
+            <a href="8 - Léo.Texier-ANNEXE VI.1 - EPREUVE E5 TABLEAU DE SYNTHESE - BTS SIO 2026 (1).pdf" class="btn-link">Tableau de synthèse E5</a>
+        </div>
+    </section>
+
+    <section id="veille">
+        <h2>Veilles Technologiques</h2>
+        <div class="bubble-container">
+            <div class="text-bubble">
+                <h3>🔐 La Cybersécurité : Phishing & Ransomwares</h3>
+                <p>La cybersécurité est la protection des systèmes contre les cyberattaques. Deux menaces majeures dominent aujourd'hui :</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><b>Le Phishing (Hameçonnage) :</b> Technique visant à tromper l'utilisateur pour dérober des identifiants ou données bancaires.</li>
+                    <li><b>Le Ransomware (Rançongiciel) :</b> Logiciel malveillant qui chiffre les données et réclame une rançon.</li>
+                </ul>
+                <p style="margin-top:10px;"><b>Sources :</b> ANSSI, Cybermalveillance.gouv.fr.</p>
+            </div>
+            <div class="text-bubble">
+                <h3>🤖 La Robotique</h3>
+                <p>Domaine alliant informatique et mécanique pour créer des machines autonomes. C'est le futur de l'industrie automatisée.</p>
+            </div>
+            <div class="text-bubble">
+                <h3>🔌 Cartes Graphiques (GPU)</h3>
+                <p>Essentiels au rendu visuel et désormais au calcul massif pour l'Intelligence Artificielle.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="reseaux">
+        <h2>LinkedIn</h2>
+        <div class="bubble-container">
+            <div class="text-bubble" style="align-self: center; text-align: center;">
+                <h3>Mon Profil Professionnel</h3>
+                <p>Retrouvez mon parcours complet sur mon réseau social professionnel.<span class="sentence-end-bubble"></span></p>
+                <div class="btn-row" style="margin-top: 20px;">
+                    <a href="https://www.linkedin.com/in/l%C3%A9o-texier-1bb726332/" target="_blank" class="btn-link">
+                        <i class="fab fa-linkedin"></i> Accéder à mon LinkedIn
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ap-1">
+        <h2>Projet Iristech</h2>
+        <div class="bubble-container">
+            <div class="text-bubble" style="align-self: center; text-align: center;">
+                <h3>Atelier Professionnel 1</h3>
+                <p>Réalisation d'un site web complet pour la marque Iristech. Présentation vidéo ci-dessous :<span class="sentence-end-bubble"></span></p>
+                <div class="video-container">
+                    <video controls><source src="Vidéo sans titre ‐ Réalisée avec ClipchampIristech.mp4" type="video/mp4"></video>
+                </div>
+                <div class="btn-row"><a href="Futuriste2.html" class="btn-link" target="_blank">Visiter le site Iristech</a></div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <div class="footer-info">
+        <p>© 2026 Léo Texier - Portfolio Professionnel</p>
+        <p>Contact : <a href="mailto:texier.leo@email.com" style="color:white; text-decoration:none;">texier.leo@email.com</a></p>
+    </div>
+</footer>
+
+<script>
+    function show(id) {
+        document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        const targetSection = document.getElementById(id);
+        if (targetSection) {
+            targetSection.classList.add('active');
+        }
+        window.scrollTo(0,0);
+    }
+</script>
+
+</body>
+</html>

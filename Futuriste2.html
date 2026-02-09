@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iristech - Site Complet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Variables CSS pour faciliter la personnalisation */
+        :root {
+            --primary-color: #007bff; /* Bleu vibrant pour les accents */
+            --secondary-color: #333; /* Texte foncé par défaut */
+            --light-color: #f4f4f4; /* Arrière-plans clairs */
+            --dark-bg: #1a1a2e; /* Arrière-plan foncé pour certaines sections */
+            --text-on-dark: #e0e0e0; /* Texte clair sur arrière-plan foncé */
+            --accent-color: #00bcd4; /* Accent sarcelle (teal) */
+            --font-primary: 'Montserrat', sans-serif;
+            --font-secondary: 'Poppins', sans-serif;
+            --animation-duration: 0.8s;
+            --animation-delay: 0.3s;
+        }
+
+        /* Réinitialisation de base et styles globaux */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth; /* Pour un défilement fluide */
+        }
+
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--secondary-color); /* Couleur de texte par défaut */
+            background: #fff; /* Couleur de fond de secours, mais la vidéo est prioritaire */
+            overflow-x: hidden;
+            position: relative; /* Nécessaire pour le positionnement de la vidéo */
+        }
+
+        /* Conteneur vidéo en arrière-plan */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -2; /* Place la vidéo derrière tout le contenu */
+            background-color: #000; /* Couleur de secours si la vidéo ne charge pas */
+        }
+
+        .video-background video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: cover; /* Assure que la vidéo couvre tout le conteneur */
+            filter: brightness(0.5); /* Assombrit la vidéo pour une meilleure lisibilité du texte */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-secondary);
+            margin-bottom: 15px;
+            color: var(--secondary-color); /* Couleur par défaut */
+        }
+
+        h1 { font-size: 3em; }
+        h2 { font-size: 2.5em; }
+        h3 { font-size: 1.8em; }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Styles des Boutons */
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border: none;
+            cursor: pointer;
+            animation: fadeInUp var(--animation-duration) ease-out var(--animation-delay) both;
+        }
+
+        .btn:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* En-tête (Header) commun à toutes les pages */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            background: rgba(75, 50, 195, 0.8); /* Fond semi-transparent pour nav pour voir la vidéo */
+            padding: 1rem;
+            color: white;
+            animation: fadeInDown var(--animation-duration) ease-out;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        nav h1 {
+            color: white;
+            animation: slideInLeft var(--animation-duration) ease-out;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
+            animation: fadeIn var(--animation-duration) ease-out var(--animation-delay);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            padding: 5px 0;
+            position: relative;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            left: 0;
+            bottom: -5px;
+            transition: width 0.3s ease-in-out;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Sections de "page" cachées/affichées */
+        .page-section {
+            display: none; /* Toutes les sections sont cachées par défaut */
+            min-height: 80vh; /* S'assure que les sections ont une hauteur minimale */
+            padding-bottom: 80px; /* Espace pour le footer */
+            position: relative; /* Pour que le z-index fonctionne */
+            z-index: 1; /* Place le contenu au-dessus de la vidéo */
+        }
+
+        .page-section.active {
+            display: block; /* La section active est affichée */
+        }
+
+        /* Header de la page d'accueil (Hero Section) */
+        #home-page .hero-section {
+            text-align: center;
+            padding: 100px 20px;
+            /* Fond sombre et transparent pour la section d'accueil pour voir la vidéo */
+            background: rgba(0, 0, 0, 0.4);
+            color: white;
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn var(--animation-duration) ease-out;
+        }
+
+        #home-page .hero-section::before { /* Incrustation subtile pour un effet futuriste */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(0,188,212,0.1) 0%, rgba(0,188,212,0) 70%);
+            pointer-events: none;
+        }
+
+        #home-page .hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        #home-page .hero-content h2,
+        #home-page .hero-content h3,
+        #home-page .hero-content p {
+            color: white; /* Assurer que le texte est blanc pour le contraste avec la vidéo */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Ombre pour meilleure lisibilité */
+        }
+
+
+        #home-page .hero-content h2 {
+            font-size: 3.5em;
+            animation: fadeInUp var(--animation-duration) ease-out;
+        }
+
+        #home-page .hero-content h3 {
+            font-size: 2em;
+            margin-top: -10px;
+            animation: fadeInUp var(--animation-duration) ease-out var(--animation-delay);
+        }
+
+        #home-page .hero-content p {
+            font-size: 1.1em;
+            margin: 20px 0;
+            opacity: 0.9;
+            animation: fadeInUp var(--animation-duration) ease-out var(--animation-delay * 2);
+        }
+
+        #home-page .hero-image {
+            position: absolute;
+            bottom: 0;
+            right: 5%;
+            width: 40%;
+            max-width: 600px;
+            z-index: 1;
+            animation: slideInUp var(--animation-duration) ease-out;
+        }
+
+        #home-page .hero-image img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 20px rgba(0, 188, 212, 0.5)); /* Effet lumineux */
+        }
+
+
+        /* Header des pages internes (non "hero") */
+        .internal-page-header {
+            background: none; /* Rendu transparent */
+            color: white; /* Texte blanc */
+            padding: 80px 20px;
+            text-align: center;
+            box-shadow: none; /* Pas d'ombre pour un look plus léger */
+            animation: fadeInDown var(--animation-duration) ease-out;
+        }
+
+        .internal-page-header h2 {
+            color: white; /* Titre en blanc */
+            font-size: 2.8em;
+            margin-bottom: 0;
+            animation: fadeInUp var(--animation-duration) ease-out;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Ombre pour meilleure lisibilité */
+        }
+
+        /* Sections de contenu (À Propos, Avis, Contact et Features) qui devraient laisser voir la vidéo */
+        #features.container,
+        #about-page .container,
+        #reviews-page .container,
+        #contact-page .container {
+            background: rgba(255, 255, 255, 0.85); /* Fond blanc semi-transparent */
+            color: var(--secondary-color); /* Texte foncé */
+            padding: 60px 0;
+            margin-top: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Titres dans les sections de contenu transparentes */
+        #features.container h2,
+        #about-page .container h2,
+        #reviews-page .container h2,
+        #contact-page .container h2 {
+            color: var(--dark-bg); /* Titres en foncé */
+        }
+
+        /* Texte dans les sections de contenu transparentes */
+        #about-content p, #reviews-content p {
+            color: #555; /* Texte légèrement plus clair que secondary-color */
+        }
+
+        /* Grille de contenu (utilisée pour produits) */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+            margin-top: 40px;
+        }
+
+        .card {
+            /* Fond blanc semi-transparent pour la lisibilité (produits et features) */
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            animation: fadeInUp var(--animation-duration) ease-out var(--animation-delay);
+            color: var(--secondary-color); /* Texte foncé pour meilleure lisibilité */
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            background: rgba(255, 255, 255, 1); /* Complètement opaque au survol */
+        }
+
+        .product-image-wrapper {
+            /* Styles pour l'enveloppe de l'image */
+            width: 100%; /* Prend toute la largeur de la carte */
+            height: 200px; /* Hauteur fixe pour la cohérence */
+            overflow: hidden; /* Cache le débordement si l'image est plus grande */
+            margin-bottom: 15px; /* Espace sous l'image */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px; /* Correspond au rayon de la bordure de la carte */
+            background-color: #f0f0f0; /* Fond clair pour l'enveloppe */
+        }
+
+        .card img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto; /* Centre l'image */
+            filter: drop-shadow(0 0 10px rgba(0, 188, 212, 0.4)); /* Effet lumineux pour les images de produit */
+            transition: filter 0.3s ease;
+        }
+
+        .card:hover img {
+            filter: drop-shadow(0 0 15px rgba(0, 188, 212, 0.6)); /* Effet plus intense au survol */
+        }
+
+        .card h3 {
+            color: var(--accent-color); /* Couleur accent pour les titres des cartes */
+        }
+
+        .card p {
+            color: var(--secondary-color); /* Texte foncé pour les paragraphes */
+        }
+
+        .card strong {
+            color: var(--secondary-color); /* Prix en foncé */
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            margin-top: 1rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* Section Panier */
+        #cart {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 2.5rem;
+            /* Fond blanc plus opaque */
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            animation: fadeIn var(--animation-duration) ease-out;
+            color: var(--secondary-color); /* Texte foncé */
+        }
+
+        #cart h2 {
+            color: #4b32c3; /* Titre du panier en couleur primaire */
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        #cart ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        #cart ul li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #ccc; /* Ligne de séparation */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #cart ul li:last-child {
+            border-bottom: none;
+        }
+
+        #total {
+            font-size: 1.3em;
+            font-weight: bold;
+            text-align: right;
+            margin-top: 20px;
+            color: var(--dark-bg); /* Total en foncé */
+        }
+
+        /* Cartes d'avis individuelles */
+        .review {
+            /* Fond blanc légèrement grisé plus opaque pour les avis */
+            background: rgba(240, 240, 240, 0.95);
+            margin: 20px auto;
+            padding: 25px;
+            border-left: 5px solid #4b32c3;
+            border-radius: 8px;
+            max-width: 700px;
+            text-align: left;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            animation: slideInRight var(--animation-duration) ease-out var(--animation-delay);
+            color: var(--secondary-color); /* Texte foncé pour les avis */
+        }
+
+        .review h3 {
+            margin-top: 0;
+            color: #4b32c3; /* Titre d'avis en couleur primaire */
+            font-size: 1.4em;
+        }
+        .review p {
+            margin-bottom: 0;
+            font-style: italic;
+            color: #666; /* Texte d'avis légèrement grisé */
+            text-align: left;
+        }
+
+
+        /* Formulaire de contact */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 2.5rem;
+            /* Fond blanc plus opaque */
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            animation: fadeInUp var(--animation-duration) ease-out;
+            color: var(--secondary-color); /* Texte foncé */
+        }
+
+        form label {
+            font-weight: bold;
+            color: var(--secondary-color); /* Label foncé */
+            text-align: left;
+        }
+
+        input, textarea {
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid #ccc; /* Bordure standard */
+            background-color: #fff; /* Fond blanc */
+            color: var(--secondary-color); /* Texte dans les champs en foncé */
+            font-size: 1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 8px rgba(0,123,255,0.2);
+        }
+
+        /* Pied de page */
+        footer {
+            text-align: center;
+            padding: 25px 0;
+            background: #222;
+            color: var(--text-on-dark);
+            margin-top: 40px;
+            border-top: 2px solid var(--primary-color);
+            animation: fadeIn var(--animation-duration) ease-out;
+            position: relative; /* Au-dessus de la vidéo de fond */
+            z-index: 1;
+        }
+
+        /* Animations Keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                flex-direction: column;
+                margin-top: 15px;
+                gap: 0.5rem;
+            }
+
+            nav ul li {
+                margin: 5px 0;
+            }
+
+            .hero-content h2 {
+                font-size: 2.5em;
+            }
+
+            .hero-content h3 {
+                font-size: 1.5em;
+            }
+
+            .hero-image {
+                position: static;
+                width: 80%;
+                margin-top: 30px;
+            }
+
+            .internal-page-header {
+                padding: 60px 10px;
+            }
+
+            .internal-page-header h2 {
+                font-size: 2em;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .card {
+                padding: 1rem;
+            }
+
+            #cart, form {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.8em; }
+            h3 { font-size: 1.3em; }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+
+            nav h1 {
+                font-size: 2.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Conteneur pour la vidéo en arrière-plan -->
+    <div class="video-background">
+        <!-- Remplacez 'path/to/your/video.mp4' par l'URL de votre vidéo -->
+        <video autoplay muted loop playsinline>
+            <source src="Vidéo sans titre ‐ Réalisée avec Clipchamp.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la balise vidéo.
+        </video>
+    </div>
+
+    <nav>
+        <h1>Iristech</h1>
+        <ul>
+            <li><a href="#home" data-page="home">Accueil</a></li>
+            <li><a href="#products" data-page="products">Produits</a></li>
+            <li><a href="#about" data-page="about">À propos</a></li>
+            <li><a href="#reviews" data-page="reviews">Avis</a></li>
+            <li><a href="#contact" data-page="contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="home-page" class="page-section active">
+            <header class="hero-section">
+                <div class="hero-content">
+                    <h2>Libérez Votre Vision avec Iristech.</h2>
+                    <h3>Vivez le Futur, Aujourd'hui.</h3>
+                    <p>Préparez-vous à voir le monde non pas tel qu'il est, mais tel qu'il pourrait être. Notre nouvelle ligne révolutionnaire de lunettes intelligentes redéfinit la perception, alliant technologie de pointe et style inégalé.</p>
+                    <a href="#products" data-page="products" class="btn">Découvrez la Collection</a>
+                </div>
+                <div class="hero-image">
+                    <!-- Image de fond du hero, peut être générée ou statique -->
+                    <img src="https://placehold.co/600x400/00bcd4/ffffff?text=Vos+Lunettes+Iristech" alt="Lunettes Futuristes Iristech">
+                </div>
+            </header>
+
+            <section id="features" class="container">
+                <h2>Pourquoi choisir Iristech ?</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Technologie de Pointe</h3>
+                        <p>Nos lunettes intègrent les dernières innovations pour une expérience utilisateur sans précédent.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Design Élégant</h3>
+                        <p>Fusion parfaite entre l'esthétique futuriste et le confort au quotidien.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Vision Claire</h3>
+                        <p>Des lentilles de qualité supérieure pour une clarté visuelle inégalée.</p>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <section id="products-page" class="page-section">
+            <header class="internal-page-header">
+                <h2>Découvrez Nos Modèles Futuristes</h2>
+            </header>
+            <section id="products-list" class="grid container">
+                <!-- Les produits seront rendus ici par JavaScript -->
+            </section>
+
+            <section id="cart" class="container" style="display:none;">
+                <h2>Panier</h2>
+                <ul id="cart-items"></ul>
+                <p id="total">Total: 0€</p>
+                <button onclick="alert('Paiement simulé ! Merci pour votre commande.')">Procéder au paiement</button>
+            </section>
+        </section>
+
+        <section id="about-page" class="page-section">
+            <header class="internal-page-header">
+                <h2>Qui sommes-nous ?</h2>
+            </header>
+            <section id="about-content" class="container">
+                <p>
+                    Fondée en 2022, Iristech révolutionne la lunetterie avec des designs futuristes et une qualité irréprochable.
+                    Nous sommes passionnés par l'innovation et nous nous engageons à offrir une vision claire et élégante pour l'avenir.
+                    Notre équipe est composée d'experts en technologie et en design, travaillant ensemble pour créer des produits qui dépassent vos attentes.
+                </p>
+                <p>
+                    Chez Iristech, nous croyons que la technologie doit être une extension naturelle de soi, améliorant la vie sans effort.
+                    Nous sommes fiers de nos produits et de l'impact positif qu'ils ont sur la perception du monde par nos clients.
+                </p>
+            </section>
+        </section>
+
+        <section id="reviews-page" class="page-section">
+            <header class="internal-page-header">
+                <h2>Ce que nos clients disent de nous</h2>
+            </header>
+            <section id="reviews-content" class="container">
+                <div class="review">
+                    <h3>“Service client au top !”</h3>
+                    <p>— Emma R.</p>
+                    <p>Absolument ravie de mes Iristech ! Non seulement elles sont magnifiques, mais le service client est incroyablement réactif et serviable. Je recommande à 100%.</p>
+                </div>
+                <div class="review">
+                    <h3>“Design moderne et confort.”</h3>
+                    <p>— Lucas M.</p>
+                    <p>Ces lunettes sont un vrai bijou de technologie et de design. Elles sont si légères que j'oublie que je les porte, et leur look futuriste fait toujours sensation.</p>
+                </div>
+                <div class="review">
+                    <h3>“Je vois clair avec style !”</h3>
+                    <p>— Nina B.</p>
+                    <p>J'avais besoin de lunettes à la fois performantes et esthétiques, et Iristech a dépassé toutes mes attentes. La clarté est incroyable et le style est incomparable.</p>
+                </div>
+            </section>
+        </section>
+
+        <section id="contact-page" class="page-section">
+            <header class="internal-page-header">
+                <h2>Nous Contacter</h2>
+            </header>
+            <section id="contact-form" class="container">
+                <p style="text-align:center; margin-bottom: 30px;">
+                    Vous avez des questions, des commentaires ou des suggestions ? N'hésitez pas à nous écrire.
+                </p>
+                <form onsubmit="event.preventDefault(); alert('Message envoyé ! Nous vous répondrons dans les plus brefs délais.');">
+                    <label for="name">Nom :</label>
+                    <input type="text" id="name" placeholder="Votre nom" required />
+
+                    <label for="email">Email :</label>
+                    <input type="email" id="email" placeholder="Votre email" required />
+
+                    <label for="subject">Sujet :</label>
+                    <input type="text" id="subject" placeholder="Sujet de votre message" required />
+
+                    <label for="message">Message :</label>
+                    <textarea id="message" placeholder="Votre message..." rows="6" required></textarea>
+
+                    <button type="submit">Envoyer</button>
+                </form>
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 Iristech. Tous droits réservés.
+    </footer>
+
+    <script>
+        // Data pour les produits
+        const products = [
+            {
+                name: "VisionX 3000",
+                description: "Lunettes de soleil polarisées avec protection UV400. Un design audacieux pour l'avenir.",
+                price: 129,
+                fileName: "Capture d'écran 2025-06-17 101625.png"
+            },
+            {
+                name: "ClearSight Pro",
+                description: "Montures légères pour une vision claire au quotidien, optimisées pour le confort maximal.",
+                price: 99,
+                fileName: "Capture d'écran 2025-06-17 101639.png"
+            },
+            {
+                name: "Noir Edition",
+                description: "Élégance et mystère avec notre collection noire haut de gamme, une déclaration de style.",
+                price: 149,
+                fileName: "Capture d'écran 2025-06-17 101654.png"
+            }
+        ];
+
+        let cart = []; // Panier vide
+
+        // Fonction pour rendre les produits sur la page produits
+        async function renderProducts() {
+            const productSection = document.querySelector("#products-list");
+            if (!productSection) return;
+
+            productSection.innerHTML = ""; // Vider avant de remplir
+
+            // Créer les éléments de carte
+            products.forEach(product => {
+                const div = document.createElement("div");
+                div.className = "card";
+                // Ajout de l'attribut onerror pour les images des produits et de la div wrapper
+                div.innerHTML = `
+                    <div class="product-image-wrapper">
+                        <img src="${product.fileName}" alt="${product.name}" onerror="this.src='https://placehold.co/300x200/ff0000/ffffff?text=Image+non+trouvée'" />
+                    </div>
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <strong>${product.price}€</strong><br>
+                    <button>Ajouter au panier</button>
+                `;
+                // Assurez-vous d'ajouter l'écouteur d'événement après que le bouton soit créé dans le DOM
+                const button = div.querySelector('button');
+                button.onclick = () => addToCart(products.indexOf(product)); // Utilisez l'index pour retrouver le produit
+                productSection.appendChild(div);
+            });
+        }
+
+
+        // Fonction pour ajouter un produit au panier
+        function addToCart(index) {
+            cart.push(products[index]);
+            renderCart();
+        }
+
+        // Fonction pour rendre le panier
+        function renderCart() {
+            const cartItems = document.querySelector("#cart-items");
+            const totalEl = document.querySelector("#total");
+            const cartSection = document.querySelector("#cart");
+
+            if (!cartItems || !totalEl || !cartSection) return;
+
+            cartItems.innerHTML = "";
+            let total = 0;
+            cart.forEach(item => {
+                total += item.price;
+                const li = document.createElement("li");
+                li.textContent = `${item.name} - ${item.price}€`;
+                cartItems.appendChild(li);
+            });
+            totalEl.textContent = `Total: ${total}€`;
+            cartSection.style.display = cart.length > 0 ? "block" : "none"; // Afficher le panier s'il y a des articles
+        }
+
+        // Gestion de l'affichage des "pages" (sections)
+        document.addEventListener("DOMContentLoaded", () => {
+            const navLinks = document.querySelectorAll('nav a');
+            const pageSections = document.querySelectorAll('.page-section');
+
+            // Fonction pour afficher une page spécifique
+            function showPage(pageId) {
+                pageSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                const activePage = document.querySelector(`#${pageId}-page`);
+                if (activePage) {
+                    activePage.classList.add('active');
+                    // Gérer le rendu spécifique pour la page produits
+                    if (pageId === "products") {
+                        renderProducts(); // Appel asynchrone pour rendre les images
+                        renderCart(); // Assure que le panier est à jour si on revient sur la page produits
+                    }
+                }
+            }
+
+            // Gérer les clics sur les liens de navigation
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault(); // Empêche le comportement par défaut du lien
+                    const pageId = link.dataset.page; // Récupère l'ID de la page cible
+                    showPage(pageId);
+                });
+            });
+
+            // Afficher la page d'accueil par défaut au chargement
+            showPage('home');
+        });
+
+    </script>
+</body>
+</html>
