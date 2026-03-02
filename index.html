@@ -1,22 +1,35 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio BTS SIO - Léo Texier</title>
-    <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), 
-                        url('https://images.unsplash.com/photo-1593642532973-d31b6557fa68?fit=crop&w=1920&q=80') no-repeat center center fixed;
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+                url('https://images.unsplash.com/photo-1593642532973-d31b6557fa68?fit=crop&w=1920&q=80') no-repeat center center fixed;
             background-size: cover;
             color: white;
             scroll-behavior: smooth;
         }
-        h1, h2, h3, .logo { font-family: 'Patua One', cursive; }
+
+        h1,
+        h2,
+        h3,
+        .logo {
+            font-family: 'Patua One', cursive;
+        }
 
         header {
             background-color: rgba(0, 0, 0, 0.9);
@@ -24,224 +37,567 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky; top: 0; z-index: 1000;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
             border-bottom: 2px solid #a0c4ff;
         }
-        .nav-buttons { display: flex; gap: 10px; }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
         .nav-link {
-            color: white; padding: 10px 20px; border-radius: 20px;
-            text-decoration: none; transition: 0.3s; background: rgba(255,255,255,0.1);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: 0.3s;
+            background: rgba(255, 255, 255, 0.1);
         }
-        .nav-link:hover, .nav-link.active { background: #a0c4ff; color: black; }
 
-        .dropdown { position: relative; }
+        .nav-link:hover,
+        .nav-link.active {
+            background: #a0c4ff;
+            color: black;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
         .dropdown-content {
-            display: none; position: absolute; background: rgba(0,0,0,0.95);
-            min-width: 220px; border-radius: 10px; top: 100%; right: 0;
+            display: none;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.95);
+            min-width: 220px;
+            border-radius: 10px;
+            top: 100%;
+            right: 0;
         }
-        .dropdown:hover .dropdown-content { display: block; }
-        .dropdown-content a { color: white; padding: 12px; display: block; text-decoration: none; }
-        .dropdown-content a:hover { background: #a0c4ff; color: black; }
 
-        .content-container { padding: 40px 10%; }
-        section { display: none; animation: fadeIn 0.5s ease; }
-        section.active { display: block; }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
 
-        .bubble-container { display: flex; flex-direction: column; gap: 20px; margin-top: 30px; }
+        .dropdown-content a {
+            color: white;
+            padding: 12px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .dropdown-content a:hover {
+            background: #a0c4ff;
+            color: black;
+        }
+
+        .content-container {
+            padding: 40px 10%;
+        }
+
+        section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        .bubble-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
         .text-bubble {
-            background: rgba(248, 240, 240, 0.95); color: #333; padding: 25px;
-            border-radius: 15px; max-width: 800px; position: relative;
-            line-height: 1.6; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            background: rgba(248, 240, 240, 0.95);
+            color: #333;
+            padding: 25px;
+            border-radius: 15px;
+            max-width: 800px;
+            position: relative;
+            line-height: 1.6;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
-        .text-bubble h3 { color: #6a5acd; margin-bottom: 12px; }
-        .text-bubble:nth-of-type(odd) { align-self: flex-start; border-bottom-left-radius: 0; }
-        .text-bubble:nth-of-type(even) { align-self: flex-end; border-bottom-right-radius: 0; }
 
-        .video-container { width: 100%; max-width: 600px; margin: 20px auto; border-radius: 10px; overflow: hidden; }
-        video { width: 100%; display: block; }
+        .text-bubble h3 {
+            color: #6a5acd;
+            margin-bottom: 12px;
+        }
 
-        .btn-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 20px; }
+        .text-bubble:nth-of-type(odd) {
+            align-self: flex-start;
+            border-bottom-left-radius: 0;
+        }
+
+        .text-bubble:nth-of-type(even) {
+            align-self: flex-end;
+            border-bottom-right-radius: 0;
+        }
+
+        .video-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        video {
+            width: 100%;
+            display: block;
+        }
+
+        .btn-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
         .btn-link {
-            background: #a0c4ff; color: black; padding: 12px 20px; border-radius: 15px;
-            text-decoration: none; font-weight: bold; transition: 0.3s;
+            background: #a0c4ff;
+            color: black;
+            padding: 12px 20px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
         }
-        .btn-link:hover { transform: translateY(-3px); background: white; }
+
+        .btn-link:hover {
+            transform: translateY(-3px);
+            background: white;
+        }
 
         .sentence-end-bubble {
-            display: inline-block; width: 12px; height: 12px; background-color: #a0c4ff;
-            border-radius: 50%; margin-left: 8px; animation: pulse 1.5s infinite alternate;
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background-color: #a0c4ff;
+            border-radius: 50%;
+            margin-left: 8px;
+            animation: pulse 1.5s infinite alternate;
         }
-        @keyframes pulse { from { transform: scale(1); } to { transform: scale(1.2); } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        footer { text-align: center; padding: 50px 20px; background: rgba(0, 0, 0, 0.95); border-top: 2px solid #a0c4ff; margin-top: 50px; }
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.2);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            background: rgba(0, 0, 0, 0.95);
+            border-top: 2px solid #a0c4ff;
+            margin-top: 50px;
+        }
     </style>
 </head>
+
 <body>
 
-<header>
-    <div class="logo">Léo Texier</div>
-    <div class="nav-buttons">
-        <a href="#" class="nav-link active" onclick="show('accueil')">Accueil</a>
-        <a href="#" class="nav-link" onclick="show('a-propos')">À Propos</a>
-        <a href="#" class="nav-link" onclick="show('bts-sio')">BTS SIO</a>
-        <div class="dropdown">
-            <a href="#" class="nav-link">Projets & Stages <i class="fas fa-caret-down"></i></a>
-            <div class="dropdown-content">
-                <a href="#" onclick="show('ap-1')">Projet Iristech</a>
-                <a href="#" onclick="show('docs-tech')">Documentations</a>
-                <a href="#" onclick="show('stage-1')">Stage 1 (IDI)</a>
-                <a href="#" onclick="show('stage-orange')">Stage 2 (Orange)</a>
+    <header>
+        <div class="logo">Léo Texier</div>
+        <div class="nav-buttons">
+            <a href="#" class="nav-link active" onclick="show('accueil')">Accueil</a>
+            <a href="#" class="nav-link" onclick="show('a-propos')">À Propos</a>
+            <a href="#" class="nav-link" onclick="show('bts-sio')">BTS SIO</a>
+            <div class="dropdown">
+                <a href="#" class="nav-link">Projets & Stages <i class="fas fa-caret-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="#" onclick="show('ap-1')">Projet Iristech</a>
+                    <a href="#" onclick="show('docs-tech')">Documentations</a>
+                    <a href="#" onclick="show('stage-1')">Stage 1 (IDI)</a>
+                    <a href="#" onclick="show('stage-orange')">Stage 2 (Orange)</a>
+                </div>
             </div>
+            <a href="#" class="nav-link" onclick="show('veille')">Veilles</a>
+            <a href="#" class="nav-link" onclick="show('reseaux')">LinkedIn</a>
         </div>
-        <a href="#" class="nav-link" onclick="show('veille')">Veilles</a>
-        <a href="#" class="nav-link" onclick="show('reseaux')">LinkedIn</a>
-    </div>
-</header>
+    </header>
 
-<div class="content-container">
+    <div class="content-container">
 
-    <section id="accueil" class="active">
-        <div style="text-align: center; padding: 80px 0;">
-            <h1 style="font-size: 55px; color: #a0c4ff;">Bienvenue sur mon portfolio</h1>
-            <p style="font-size: 22px; margin-top: 20px; color: #cbd5e1;">Je suis Léo Texier, futur technicien supérieur en informatique spécialisé dans les systèmes et réseaux.</p>
-        </div>
-    </section>
-
-    <section id="a-propos">
-        <h2>À Propos de Moi</h2>
-        <div class="bubble-container">
-            <p class="text-bubble">Je m'appelle Léo Texier et j'ai actuellement <b>20 ans</b>. À l'issue de mon obtention de mon baccalauréat STMG, spécialité Systèmes d’Information de Gestion (SIG), j’ai souhaité approfondir mes compétences en informatique.<span class="sentence-end-bubble"></span></p>
-            <p class="text-bubble">J’ai suivi une formation de 5 mois pour obtenir le Titre Professionnel d’Installateur Dépanneur en Informatique (IDI), complétée par un stage d’un mois durant lequel j’avais pour mission le reconditionnement d’ordinateurs.<span class="sentence-end-bubble"></span></p>
-            <p class="text-bubble">Cette première expérience m’a permis d’acquérir des bases solides en maintenance informatique et en gestion de matériel.<span class="sentence-end-bubble"></span></p>
-        </div>
-        <div style="text-align: center; margin-top: 30px;">
-            <a href="texier-leo-cv (5).pdf (2).pdf" class="btn-link" target="_blank">Mon CV</a>
-        </div>
-    </section>
-
-    <section id="bts-sio">
-        <h2>Le BTS SIO - Option SISR</h2>
-        <div class="bubble-container">
-            <div class="text-bubble">
-                <h3>Solutions d'Infrastructure, Systèmes et Réseaux</h3>
-                <p>Le BTS SIO option SISR permet d'apprendre l'administration des systèmes et des réseaux, en d'autres termes :<span class="sentence-end-bubble"></span></p>
-                <ul style="margin-left: 20px; margin-top: 10px;">
-                    <li>La conception d'une solution d'infrastructure</li>
-                    <li>L'installation, le test et le déploiement d'une solution d'infrastructure réseau</li>
-                    <li>L'exploitation, le dépannage et la supervision d'une solution d'infrastructure réseau</li>
-                </ul>
+        <section id="accueil" class="active">
+            <div style="text-align: center; padding: 80px 0;">
+                <h1 style="font-size: 55px; color: #a0c4ff;">Bienvenue sur mon portfolio</h1>
+                <p style="font-size: 22px; margin-top: 20px; color: #cbd5e1;">Je suis Léo Texier, futur technicien
+                    supérieur en informatique spécialisé dans les systèmes et réseaux.</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="stage-1">
-        <h2>Stage 1 : Installateur Dépanneur Informatique</h2>
-        <div class="bubble-container">
-            <p class="text-bubble">Ce stage m'a plongé dans le reconditionnement d'ordinateurs, incluant le diagnostic, la réparation matérielle, l'installation de systèmes d'exploitation et la réalisation de tests de performance pour assurer la qualité des machines remises à neuf.<span class="sentence-end-bubble"></span></p>
-        </div>
-        <div class="btn-row">
-            <a href="DP Léo (1).pdf" class="btn-link" target="_blank">Rapport de Stage</a>
-        </div>
-    </section>
-
-    <section id="stage-orange">
-        <h2>Stage 2 : Orange (Qualité Fibre)</h2>
-        <div class="bubble-container">
-            <p class="text-bubble">Ma mission actuelle chez <b>Orange</b> porte sur l'assurance qualité des données relatives à l'infrastructure fibre optique, un aspect crucial pour garantir la fiabilité et la performance des réseaux.<span class="sentence-end-bubble"></span></p>
-            <p class="text-bubble">Ce stage me permet d'analyser les flux de données réseau et de corriger les anomalies techniques pour optimiser le déploiement de la fibre.<span class="sentence-end-bubble"></span></p>
-        </div>
-        <div class="btn-row">
-            <a href="Rapport-Stage-Léo-TEXIER.pdf" class="btn-link" target="_blank">Rapport de Stage Orange</a>
-        </div>
-    </section>
-
-    <section id="docs-tech">
-        <h2>Documentations Techniques</h2>
-        <div class="btn-row">
-            <a href="mise-en-place-de-nginx.pdf" class="btn-link">Mise en place de Nginx</a>
-            <a href="mise-en-place-dun-serveur-web-apache.pdf" class="btn-link">Mise en place d'Apache</a>
-            <a href="Docu_glpi.pdf" class="btn-link">Documentation GLPI</a>
-            <a href="913721_af1e5c70730f42e3aeff323d209a9521-1.pdf" class="btn-link">Installation Windows 10</a>
-            <a href="Ajouter des utilisateurs et des ordinateurs au domaine Active Directory.pdf" class="btn-link">Active Directory</a>
-            <a href="installation-et-mise-en-place-dhcp-dns.pdf" class="btn-link">Installation DHCP-DNS</a>
-            <a href="installer-et-mettre-en-place-proxmox.pdf" class="btn-link">Installation Proxmox</a>
-             <a href="Tableau-Synthese-E5.pdf" class="btn-link" target="_blank">Tableau de synthèse E5</a>
-        </div>
-    </section>
-
-    <section id="veille">
-        <h2>Veilles Technologiques</h2>
-        <div class="bubble-container">
-            <div class="text-bubble">
-                <h3>🔐 La Cybersécurité : Phishing & Ransomwares</h3>
-                <p>La cybersécurité est la protection des systèmes contre les cyberattaques. Deux menaces majeures dominent aujourd'hui :</p>
-                <ul style="margin-left: 20px; margin-top: 10px;">
-                    <li><b>Le Phishing (Hameçonnage) :</b> Technique visant à tromper l'utilisateur pour dérober des identifiants ou données bancaires.</li>
-                    <li><b>Le Ransomware (Rançongiciel) :</b> Logiciel malveillant qui chiffre les données et réclame une rançon.</li>
-                </ul>
-                <p style="margin-top:10px;"><b>Sources :</b> ANSSI, Cybermalveillance.gouv.fr.</p>
+        <section id="a-propos">
+            <h2>À Propos de Moi</h2>
+            <div class="bubble-container">
+                <p class="text-bubble">Je m'appelle Léo Texier et j'ai actuellement <b>20 ans</b>. À l'issue de mon
+                    obtention de mon baccalauréat STMG, spécialité Systèmes d’Information de Gestion (SIG), j’ai
+                    souhaité approfondir mes compétences en informatique.<span class="sentence-end-bubble"></span></p>
+                <p class="text-bubble">J’ai suivi une formation de 5 mois pour obtenir le Titre Professionnel
+                    d’Installateur Dépanneur en Informatique (IDI), complétée par un stage d’un mois durant lequel
+                    j’avais pour mission le reconditionnement d’ordinateurs.<span class="sentence-end-bubble"></span>
+                </p>
+                <p class="text-bubble">Cette première expérience m’a permis d’acquérir des bases solides en maintenance
+                    informatique et en gestion de matériel.<span class="sentence-end-bubble"></span></p>
             </div>
-            <div class="text-bubble">
-                <h3>🤖 La Robotique</h3>
-                <p>La robotique combine l'informatique, l'électronique et la mécanique pour concevoir des machines capables d'effectuer des tâches physiques de manière autonome. C'est un pilier de l'industrie 4.0.</p>
-            </div>
-            <div class="text-bubble">
-                <h3>🔌 Cartes Graphiques (GPU)</h3>
-                <p>Les GPU sont des processeurs spécialisés dans le calcul parallèle massif. Essentiels pour le rendu visuel, ils sont aujourd'hui le moteur principal des calculs liés à l'Intelligence Artificielle.</p>
-            </div>
-        </div>
-    </section>
 
-    <section id="reseaux">
-        <h2>LinkedIn</h2>
-        <div class="bubble-container">
-            <div class="text-bubble" style="align-self: center; text-align: center;">
-                <h3>Mon Profil Professionnel</h3>
-                <p>Retrouvez mon parcours complet sur mon réseau social professionnel.<span class="sentence-end-bubble"></span></p>
-                <div class="btn-row" style="margin-top: 20px;">
-                    <a href="https://www.linkedin.com/in/l%C3%A9o-texier-1bb726332/" target="_blank" class="btn-link">
-                        <i class="fab fa-linkedin"></i> Accéder à mon LinkedIn
+            <h3 style="margin-top: 40px; margin-bottom: 20px; text-align: center; color: #a0c4ff;">Mon Curriculum Vitae
+            </h3>
+            <div class="cv-preview-container" style="text-align: center; margin-top: 20px;">
+                <div style="position: relative; display: inline-block; cursor: pointer; transition: transform 0.3s;"
+                    onclick="document.getElementById('cv-modal').style.display='flex';"
+                    onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                    <iframe src="texier-leo-cv (5).pdf (2).pdf#toolbar=0&navpanes=0&scrollbar=0" width="300"
+                        height="400"
+                        style="border: 2px solid #a0c4ff; border-radius: 10px; pointer-events: none;"></iframe>
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.4); border-radius: 10px; opacity: 0; transition: opacity 0.3s;"
+                        onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'">
+                        <i class="fas fa-search-plus" style="font-size: 3rem; color: #fff;"></i>
+                    </div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <a href="texier-leo-cv (5).pdf (2).pdf" class="btn-link" target="_blank" download>Télécharger mon
+                        CV</a>
+                </div>
+            </div>
+
+            <!-- Fenêtre modale pour le CV -->
+            <div id="cv-modal"
+                style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center;">
+                <div
+                    style="position: relative; width: 80%; height: 90%; background: #fff; border-radius: 10px; padding: 10px;">
+                    <span
+                        style="position: absolute; top: 10px; right: 20px; font-size: 2rem; color: #000; cursor: pointer; z-index: 2001;"
+                        onclick="document.getElementById('cv-modal').style.display='none';">&times;</span>
+                    <iframe src="texier-leo-cv (5).pdf (2).pdf" width="100%" height="100%"
+                        style="border: none; border-radius: 10px;"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="bts-sio">
+            <h2>Le BTS SIO - Option SISR</h2>
+            <div class="bubble-container">
+                <div class="text-bubble">
+                    <h3>Solutions d'Infrastructure, Systèmes et Réseaux</h3>
+                    <p>Le BTS SIO option SISR prépare à l'administration des systèmes et réseaux. La formation est
+                        validée par 3 épreuves professionnelles majeures :<span class="sentence-end-bubble"></span></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><b>Épreuve E4 :</b> Support et mise à disposition de services informatiques.</li>
+                        <li><b>Épreuve E5 :</b> Administration des systèmes et des réseaux / Conception
+                            d'infrastructures.</li>
+                        <li><b>Épreuve E6 :</b> Cybersécurité des services informatiques (analyse des risques et
+                            sécurisation).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 40px; margin-bottom: 20px; color: #a0c4ff;">Projets École</h3>
+            <div class="bubble-container">
+                <div class="text-bubble">
+                    <h3>Projets d'Infrastructures Réseaux et Systèmes</h3>
+                    <p>Durant ma formation, j'ai réalisé plusieurs projets visant à concevoir, déployer et administrer
+                        des solutions d'infrastructure complexes (ex: environnement virtualisé sous Proxmox, domaine
+                        Active Directory, déploiement automatisé). Vous retrouverez les détails dans la section
+                        <b>Documentations</b> et <b>Projets & Stages</b>.<span class="sentence-end-bubble"></span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="stage-1">
+            <h2>Stage 1 : IDI (Installateur Dépanneur Informatique)</h2>
+            <div class="bubble-container">
+                <div class="text-bubble">
+                    <h3>Contexte de l'entreprise</h3>
+                    <p>L'entreprise évolue dans le secteur de la remise à neuf de matériel informatique. Son besoin
+                        principal est de répondre à la demande croissante de matériel reconditionné, à la fois pour des
+                        raisons écologiques et économiques, tout en garantissant des performances optimales aux clients
+                        finaux.<span class="sentence-end-bubble"></span></p>
+                </div>
+                <p class="text-bubble">Ce stage m'a plongé dans le reconditionnement d'ordinateurs, incluant le
+                    diagnostic, la réparation matérielle, l'installation de systèmes d'exploitation et la réalisation de
+                    tests de performance pour assurer la qualité des machines remises à neuf.<span
+                        class="sentence-end-bubble"></span></p>
+            </div>
+
+            <h3 style="margin-top: 40px; margin-bottom: 20px; text-align: center; color: #a0c4ff;">Rapport de Stage</h3>
+            <div class="cv-preview-container" style="text-align: center; margin-top: 20px;">
+                <div style="position: relative; display: inline-block; cursor: pointer; transition: transform 0.3s;"
+                    onclick="document.getElementById('report1-modal').style.display='flex';"
+                    onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                    <iframe src="DP Léo (1).pdf#toolbar=0&navpanes=0&scrollbar=0" width="300" height="400"
+                        style="border: 2px solid #a0c4ff; border-radius: 10px; pointer-events: none;"></iframe>
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.4); border-radius: 10px; opacity: 0; transition: opacity 0.3s;"
+                        onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'">
+                        <i class="fas fa-search-plus" style="font-size: 3rem; color: #fff;"></i>
+                    </div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <a href="DP Léo (1).pdf" class="btn-link" target="_blank" download>Télécharger le rapport</a>
+                </div>
+            </div>
+
+            <div id="report1-modal"
+                style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center;">
+                <div
+                    style="position: relative; width: 80%; height: 90%; background: #fff; border-radius: 10px; padding: 10px;">
+                    <span
+                        style="position: absolute; top: 10px; right: 20px; font-size: 2rem; color: #000; cursor: pointer; z-index: 2001;"
+                        onclick="document.getElementById('report1-modal').style.display='none';">&times;</span>
+                    <iframe src="DP Léo (1).pdf" width="100%" height="100%"
+                        style="border: none; border-radius: 10px;"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="stage-orange">
+            <h2>Stage 2 : Orange (Qualité Fibre)</h2>
+            <div class="bubble-container">
+                <div class="text-bubble">
+                    <h3>Contexte de l'entreprise</h3>
+                    <p>Orange est un acteur majeur des télécommunications. Face au déploiement massif de la fibre
+                        optique (FTTH), l'entreprise a un besoin critique de maintenir une base de données
+                        d'infrastructure (Systèmes d'Information) fiable et précise pour assurer le raccordement sans
+                        faille des clients et faciliter les interventions des techniciens sur le terrain.<span
+                            class="sentence-end-bubble"></span></p>
+                </div>
+                <p class="text-bubble">Ma mission actuelle chez <b>Orange</b> porte sur l'assurance qualité des données
+                    relatives à l'infrastructure fibre optique, un aspect crucial pour garantir la fiabilité et la
+                    performance des réseaux.<span class="sentence-end-bubble"></span></p>
+                <p class="text-bubble">Ce stage me permet d'analyser les flux de données réseau et de corriger les
+                    anomalies techniques pour optimiser le déploiement de la fibre.<span
+                        class="sentence-end-bubble"></span></p>
+            </div>
+
+            <h3 style="margin-top: 40px; margin-bottom: 20px; text-align: center; color: #a0c4ff;">Rapport de Stage</h3>
+            <div class="cv-preview-container" style="text-align: center; margin-top: 20px;">
+                <div style="position: relative; display: inline-block; cursor: pointer; transition: transform 0.3s;"
+                    onclick="document.getElementById('report2-modal').style.display='flex';"
+                    onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                    <iframe src="Rapport-Stage-Léo-TEXIER.pdf#toolbar=0&navpanes=0&scrollbar=0" width="300" height="400"
+                        style="border: 2px solid #a0c4ff; border-radius: 10px; pointer-events: none;"></iframe>
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.4); border-radius: 10px; opacity: 0; transition: opacity 0.3s;"
+                        onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'">
+                        <i class="fas fa-search-plus" style="font-size: 3rem; color: #fff;"></i>
+                    </div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <a href="Rapport-Stage-Léo-TEXIER.pdf" class="btn-link" target="_blank" download>Télécharger le
+                        rapport</a>
+                </div>
+            </div>
+
+            <div id="report2-modal"
+                style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center;">
+                <div
+                    style="position: relative; width: 80%; height: 90%; background: #fff; border-radius: 10px; padding: 10px;">
+                    <span
+                        style="position: absolute; top: 10px; right: 20px; font-size: 2rem; color: #000; cursor: pointer; z-index: 2001;"
+                        onclick="document.getElementById('report2-modal').style.display='none';">&times;</span>
+                    <iframe src="Rapport-Stage-Léo-TEXIER.pdf" width="100%" height="100%"
+                        style="border: none; border-radius: 10px;"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="docs-tech">
+            <h2>Documentations Techniques (Chronologie)</h2>
+            <div
+                style="position: relative; max-width: 800px; margin: 40px auto; padding-left: 30px; border-left: 4px solid #a0c4ff;">
+
+                <!-- Item 1 -->
+                <div style="position: relative; margin-bottom: 40px;">
+                    <div
+                        style="position: absolute; width: 16px; height: 16px; background: #6a5acd; border-radius: 50%; left: -39px; top: 5px;">
+                    </div>
+                    <div class="text-bubble"
+                        style="width: 100%; max-width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+                        <h3 style="margin-bottom: 8px;">1. Virtualisation & Postes Clients</h3>
+                        <p style="margin-bottom: 12px;">Mise en place de l'environnement de base et installation des
+                            premiers systèmes.</p>
+                        <div class="btn-row" style="justify-content: flex-start; margin-top: 10px;">
+                            <a href="installer-et-mettre-en-place-proxmox.pdf" class="btn-link"
+                                target="_blank">Proxmox</a>
+                            <a href="913721_af1e5c70730f42e3aeff323d209a9521-1.pdf" class="btn-link"
+                                target="_blank">Windows 10</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div style="position: relative; margin-bottom: 40px;">
+                    <div
+                        style="position: absolute; width: 16px; height: 16px; background: #6a5acd; border-radius: 50%; left: -39px; top: 5px;">
+                    </div>
+                    <div class="text-bubble"
+                        style="width: 100%; max-width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+                        <h3 style="margin-bottom: 8px;">2. Services Réseaux et Annuaire</h3>
+                        <p style="margin-bottom: 12px;">Configuration des rôles essentiels pour le réseau d'entreprise
+                            communiquant.</p>
+                        <div class="btn-row" style="justify-content: flex-start; margin-top: 10px;">
+                            <a href="installation-et-mise-en-place-dhcp-dns.pdf" class="btn-link" target="_blank">DHCP /
+                                DNS</a>
+                            <a href="Ajouter des utilisateurs et des ordinateurs au domaine Active Directory.pdf"
+                                class="btn-link" target="_blank">Active Directory</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div style="position: relative; margin-bottom: 40px;">
+                    <div
+                        style="position: absolute; width: 16px; height: 16px; background: #6a5acd; border-radius: 50%; left: -39px; top: 5px;">
+                    </div>
+                    <div class="text-bubble"
+                        style="width: 100%; max-width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+                        <h3 style="margin-bottom: 8px;">3. Serveurs Web & Services IT</h3>
+                        <p style="margin-bottom: 12px;">Déploiement de serveurs web et d'outils de gestion de parc
+                            informatique.</p>
+                        <div class="btn-row" style="justify-content: flex-start; margin-top: 10px;">
+                            <a href="mise-en-place-dun-serveur-web-apache.pdf" class="btn-link"
+                                target="_blank">Apache</a>
+                            <a href="mise-en-place-de-nginx.pdf" class="btn-link" target="_blank">Nginx</a>
+                            <a href="Docu_glpi.pdf" class="btn-link" target="_blank">GLPI (Ticketing)</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div style="position: relative;">
+                    <div
+                        style="position: absolute; width: 16px; height: 16px; background: #6a5acd; border-radius: 50%; left: -39px; top: 5px;">
+                    </div>
+                    <div class="text-bubble"
+                        style="width: 100%; max-width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+                        <h3 style="margin-bottom: 8px;">Bilan des Compétences</h3>
+                        <p style="margin-bottom: 12px;">Synthèse des réalisations professionnelles et validation des
+                            acquis E5.</p>
+                        <div class="btn-row" style="justify-content: flex-start; margin-top: 10px;">
+                            <a href="Tableau-Synthese-E5.pdf" class="btn-link" target="_blank">Tableau de synthèse
+                                E5</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="veille">
+            <h2>Veilles Technologiques</h2>
+            <div class="bubble-container">
+                <div class="text-bubble">
+                    <h3>🚨 Cybersécurité : Impact d'une cyber-attaque en entreprise</h3>
+                    <p>Les cyber-attaques, telles que les ransomwares ciblant les hôpitaux ou les grandes entreprises,
+                        ont des conséquences désastreuses sur la continuité d'activité. L'impact n'est pas que technique
+                        : il se chiffre en millions d'euros de pertes d'exploitation, en données clients compromises
+                        (implications RGPD), et en dommages irréversibles sur la réputation de l'entreprise.</p>
+                    <p style="margin-top:10px;">La paralysie d'infrastructures critiques exige une réponse à incident
+                        rapide et souligne l'importance vitale des sauvegardes déconnectées et des plans de reprise
+                        d'activité (PRA).</p>
+                </div>
+                <div class="text-bubble">
+                    <h3>🤖 La monétisation et la publicité dans les IA</h3>
+                    <p>Avec l'essor des IA génératives (ChatGPT, Copilot, Gemini), les grands acteurs de la tech
+                        commencent à intégrer des formats publicitaires et des modèles économiques d'abonnements.
+                        L'enjeu métier est double : rentabiliser les coûts d'infrastructure colossaux liés à
+                        l'entraînement et l'inférence de l'IA, tout en préservant l'expérience utilisateur et la
+                        neutralité apparente des réponses générées.</p>
+                </div>
+                <div class="text-bubble">
+                    <h3>💾 Fluctuation du prix de la RAM : Impacts métiers</h3>
+                    <p>L'augmentation des prix des composants mémoire (RAM), due aux pénuries de semi-conducteurs et à
+                        la demande massive des centres de données dédiés à l'IA, impacte directement les budgets IT.
+                        Pour les entreprises, cela signifie un coût d'infrastructure matérielle en forte hausse, forçant
+                        souvent la DSI à repenser les architectures (finops, cloud hybride, optimisation des ressources)
+                        pour maîtriser les dépenses.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="reseaux">
+            <h2>LinkedIn</h2>
+            <div class="bubble-container">
+                <div class="text-bubble" style="align-self: center; text-align: center; padding: 40px;">
+                    <p style="margin-bottom: 20px; font-size: 1.2rem;">Retrouvez mon parcours complet et mes actualités
+                        sur mon réseau professionnel.<span class="sentence-end-bubble"></span></p>
+                    <a href="https://www.linkedin.com/in/l%C3%A9o-texier-1bb726332/" target="_blank"
+                        style="display: inline-block; transition: transform 0.3s;"
+                        onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
+                            alt="LinkedIn Logo" style="width: 100px; height: 100px; object-fit: contain;">
                     </a>
+                    <br>
+                    <div class="btn-row" style="margin-top: 20px;">
+                        <a href="https://www.linkedin.com/in/l%C3%A9o-texier-1bb726332/" target="_blank"
+                            class="btn-link">
+                            <i class="fab fa-linkedin"></i> Accéder à mon Profil LinkedIn
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="ap-1">
-        <h2>Projet Iristech</h2>
-        <div class="bubble-container">
-            <div class="text-bubble" style="align-self: center; text-align: center;">
-                <h3>Atelier Professionnel 1</h3>
-                <p>Réalisation d'un site web complet pour la marque Iristech. Présentation vidéo ci-dessous :<span class="sentence-end-bubble"></span></p>
-                <div class="video-container">
-                    <video controls><source src="Vidéo sans titre ‐ Réalisée avec ClipchampIristech.mp4" type="video/mp4"></video>
+        <section id="ap-1">
+            <h2>Projet Iristech</h2>
+            <div class="bubble-container">
+                <div class="text-bubble" style="align-self: center; text-align: center;">
+                    <h3>Atelier Professionnel 1</h3>
+                    <p>Réalisation d'un site web complet pour la marque Iristech. Présentation vidéo ci-dessous :<span
+                            class="sentence-end-bubble"></span></p>
+                    <div class="video-container">
+                        <video controls>
+                            <source src="Vidéo sans titre ‐ Réalisée avec ClipchampIristech.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="btn-row"><a href="Futuriste2.html" class="btn-link" target="_blank">Visiter le site
+                            Iristech</a></div>
                 </div>
-                <div class="btn-row"><a href="Futuriste2.html" class="btn-link" target="_blank">Visiter le site Iristech</a></div>
             </div>
-        </div>
-    </section>
+        </section>
 
-</div>
-
-<footer>
-    <div class="footer-info">
-        <p>© 2026 Léo Texier - Portfolio Professionnel</p>
-        <p>Contact : <a href="mailto:leo05.texier@gmail.com" style="color:white; text-decoration:none;">leo05.texier@gmail.com</a></p>
     </div>
-</footer>
 
-<script>
-    function show(id) {
-        document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-        const targetSection = document.getElementById(id);
-        if (targetSection) {
-            targetSection.classList.add('active');
+    <footer>
+        <div class="footer-info">
+            <p>© 2026 Léo Texier - Portfolio Professionnel</p>
+            <p>Contact : <a href="mailto:leo05.texier@gmail.com"
+                    style="color:white; text-decoration:none;">leo05.texier@gmail.com</a></p>
+        </div>
+    </footer>
+
+    <script>
+        function show(id) {
+            document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            const targetSection = document.getElementById(id);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+            window.scrollTo(0, 0);
         }
-        window.scrollTo(0,0);
-    }
-</script>
+    </script>
 
 </body>
+
 </html>
