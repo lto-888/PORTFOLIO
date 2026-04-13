@@ -235,8 +235,9 @@
                 <div class="dropdown-content">
                     <a href="#" onclick="show('ap-1')">Projet Iristech</a>
                     <a href="#" onclick="show('docs-tech')">Documentations</a>
-                    <a href="#" onclick="show('stage-1')">Stage 1 (IDI)</a>
-                    <a href="#" onclick="show('stage-orange')">Stage 2 (Orange)</a>
+                    <a href="#" onclick="show('stage-1')">IDI</a>
+                    <a href="#" onclick="show('stage-orange')">Stage 1 Orange</a>
+                    <a href="#" onclick="show('stage-metro')">Stage 2 Métro</a>
                 </div>
             </div>
             <a href="#" class="nav-link" onclick="show('veille')">Veilles</a>
@@ -333,7 +334,7 @@
         </section>
 
         <section id="stage-1">
-            <h2>Stage 1 : IDI (Installateur Dépanneur Informatique)</h2>
+            <h2>IDI (Installateur Dépanneur Informatique)</h2>
             <div class="bubble-container">
                 <div class="text-bubble">
                     <h3>Contexte de l'entreprise</h3>
@@ -379,7 +380,7 @@
         </section>
 
         <section id="stage-orange">
-            <h2>Stage 2 : Orange (Qualité Fibre)</h2>
+            <h2>Stage 1 : Orange (Qualité Fibre)</h2>
             <div class="bubble-container">
                 <div class="text-bubble">
                     <h3>Contexte de l'entreprise</h3>
@@ -423,6 +424,46 @@
                         style="position: absolute; top: 10px; right: 20px; font-size: 2rem; color: #000; cursor: pointer; z-index: 2001;"
                         onclick="document.getElementById('report2-modal').style.display='none';">&times;</span>
                     <iframe src="Rapport-Stage-Léo-TEXIER.pdf" width="100%" height="100%"
+                        style="border: none; border-radius: 10px;"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="stage-metro">
+            <h2>Stage 2 : Métro</h2>
+            <div class="bubble-container">
+                <div class="text-bubble">
+                    <h3>Contexte de l'entreprise</h3>
+                    <p>Description du contexte et des missions réalisées lors du stage au Métro.<span class="sentence-end-bubble"></span></p>
+                </div>
+                <p class="text-bubble">Les détails de ce stage seront ajoutés prochainement.<span class="sentence-end-bubble"></span></p>
+            </div>
+
+            <h3 style="margin-top: 40px; margin-bottom: 20px; text-align: center; color: #a0c4ff;">Rapport de Stage</h3>
+            <div class="cv-preview-container" style="text-align: center; margin-top: 20px;">
+                <div style="position: relative; display: inline-block; cursor: pointer; transition: transform 0.3s;"
+                    onclick="document.getElementById('report-metro-modal').style.display='flex';"
+                    onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                    <iframe src="rapport-stage-metro.pdf#toolbar=0&navpanes=0&scrollbar=0" width="300" height="400"
+                        style="border: 2px solid #a0c4ff; border-radius: 10px; pointer-events: none;"></iframe>
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.4); border-radius: 10px; opacity: 0; transition: opacity 0.3s;"
+                        onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'">
+                        <i class="fas fa-search-plus" style="font-size: 3rem; color: #fff;"></i>
+                    </div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <a href="rapport-stage-metro.pdf" class="btn-link" target="_blank" download>Télécharger le rapport</a>
+                </div>
+            </div>
+
+            <div id="report-metro-modal"
+                style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center;">
+                <div
+                    style="position: relative; width: 80%; height: 90%; background: #fff; border-radius: 10px; padding: 10px;">
+                    <span
+                        style="position: absolute; top: 10px; right: 20px; font-size: 2rem; color: #000; cursor: pointer; z-index: 2001;"
+                        onclick="document.getElementById('report-metro-modal').style.display='none';">&times;</span>
+                    <iframe src="rapport-stage-metro.pdf" width="100%" height="100%"
                         style="border: none; border-radius: 10px;"></iframe>
                 </div>
             </div>
