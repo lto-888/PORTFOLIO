@@ -219,6 +219,71 @@
             border-top: 2px solid #a0c4ff;
             margin-top: 50px;
         }
+
+        .nav-future {
+            background: linear-gradient(135deg, #6a5acd, #a0c4ff) !important;
+            color: white !important;
+            font-weight: bold;
+            box-shadow: 0 0 12px rgba(160, 196, 255, 0.5);
+            animation: glowPulse 2s infinite alternate;
+        }
+
+        .nav-future:hover {
+            background: linear-gradient(135deg, #a0c4ff, #6a5acd) !important;
+            color: white !important;
+            transform: translateY(-2px);
+        }
+
+        @keyframes glowPulse {
+            from { box-shadow: 0 0 8px rgba(106, 90, 205, 0.6); }
+            to   { box-shadow: 0 0 20px rgba(160, 196, 255, 0.9); }
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 750px;
+            margin: 40px auto;
+            padding-left: 40px;
+            border-left: 4px solid #6a5acd;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            left: -52px;
+            top: 6px;
+            border: 3px solid #a0c4ff;
+        }
+
+        .timeline-dot.dot-licence {
+            background: #6a5acd;
+        }
+
+        .timeline-dot.dot-master {
+            background: linear-gradient(135deg, #a0c4ff, #6a5acd);
+            box-shadow: 0 0 10px rgba(160, 196, 255, 0.7);
+        }
+
+        .timeline-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .label-licence { background: rgba(106, 90, 205, 0.3); color: #a0c4ff; border: 1px solid #6a5acd; }
+        .label-master  { background: rgba(160, 196, 255, 0.2); color: #a0c4ff; border: 1px solid #a0c4ff; }
     </style>
 </head>
 
@@ -242,6 +307,7 @@
             </div>
             <a href="#" class="nav-link" onclick="show('veille')">Veilles</a>
             <a href="#" class="nav-link" onclick="show('reseaux')">LinkedIn</a>
+            <a href="#" class="nav-link nav-future" onclick="show('parcours-futur')">🎯 Parcours Futur</a>
         </div>
     </header>
 
@@ -642,6 +708,61 @@
                     <div class="btn-row"><a href="Futuriste2.html" class="btn-link" target="_blank">Visiter le site
                             Iristech</a></div>
                 </div>
+            </div>
+        </section>
+
+        <section id="parcours-futur">
+            <h2 style="color: #a0c4ff;">🎯 Mon Parcours Futur</h2>
+            <div class="bubble-container">
+                <div class="text-bubble">
+                    <h3>Ma vision après le BTS SIO</h3>
+                    <p>À l'issue de mon BTS SIO option SISR, je souhaite poursuivre mes études dans le domaine de
+                        l'informatique pour approfondir mes compétences et viser des postes à plus haute
+                        responsabilité, notamment dans le domaine de la <b>cybersécurité</b>.<span
+                            class="sentence-end-bubble"></span></p>
+                </div>
+            </div>
+
+            <div class="timeline">
+
+                <!-- Étape 1 : Licence -->
+                <div class="timeline-item">
+                    <div class="timeline-dot dot-licence"></div>
+                    <span class="timeline-label label-licence">Étape 1 — Court terme</span>
+                    <div class="text-bubble" style="max-width: 100%;">
+                        <h3>🎓 Licence Informatique (3ème année)</h3>
+                        <p>Après mon BTS, j'envisage d'intégrer une <b>Licence Informatique en 3ème année</b>
+                            (Bachelor ou Licence Pro). Cette formation me permettrait de consolider mes bases
+                            théoriques en algorithmique, réseaux, systèmes d'exploitation et programmation, tout en
+                            obtenant un diplôme de niveau Bac+3 reconnu.<span class="sentence-end-bubble"></span></p>
+                        <ul style="margin-left: 20px; margin-top: 10px; color: #555;">
+                            <li>Approfondissement des fondamentaux informatiques</li>
+                            <li>Renforcement des compétences réseaux et systèmes</li>
+                            <li>Acquisition d'une base solide avant spécialisation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Étape 2 : Master -->
+                <div class="timeline-item">
+                    <div class="timeline-dot dot-master"></div>
+                    <span class="timeline-label label-master">Étape 2 — Moyen terme</span>
+                    <div class="text-bubble" style="max-width: 100%;">
+                        <h3>🔐 Master Cybersécurité</h3>
+                        <p>À la suite de ma Licence, je vise l'intégration d'un <b>Master spécialisé en
+                            Cybersécurité</b>. Ce cursus Bac+5 me permettrait de maîtriser les domaines clés de
+                            la sécurité informatique : analyse des menaces, réponse à incident, pentest, conformité
+                            RGPD et architecture sécurisée des systèmes d'information.<span
+                                class="sentence-end-bubble"></span></p>
+                        <ul style="margin-left: 20px; margin-top: 10px; color: #555;">
+                            <li>Pentest &amp; ethical hacking</li>
+                            <li>SOC / SIEM / réponse aux incidents</li>
+                            <li>Architecture et gouvernance de la sécurité SI</li>
+                            <li>Conformité RGPD &amp; gestion des risques</li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
         </section>
 
