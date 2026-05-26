@@ -299,6 +299,7 @@
                 <a href="#" class="nav-link">Projets & Stages <i class="fas fa-caret-down"></i></a>
                 <div class="dropdown-content">
                     <a href="#" onclick="show('ap-1')">Projet Iristech</a>
+                    <a href="#" onclick="show('project-m2l')">Project M2L</a>
                     <a href="#" onclick="show('docs-tech')">Documentations</a>
                     <a href="#" onclick="show('stage-1')">IDI</a>
                     <a href="#" onclick="show('stage-orange')">Stage 1 Orange</a>
@@ -525,34 +526,14 @@
                 </div>
             </div>
 
-            <h3 style="margin-top: 40px; margin-bottom: 20px; text-align: center; color: #a0c4ff;">Rapport de Stage</h3>
-            <div class="cv-preview-container" style="text-align: center; margin-top: 20px;">
-                <div style="position: relative; display: inline-block; cursor: pointer; transition: transform 0.3s;"
-                    onclick="document.getElementById('report-metro-modal').style.display='flex';"
-                    onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                    <iframe src="rapport-stage-metro.pdf#toolbar=0&navpanes=0&scrollbar=0" width="300" height="400"
-                        style="border: 2px solid #a0c4ff; border-radius: 10px; pointer-events: none;"></iframe>
-                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.4); border-radius: 10px; opacity: 0; transition: opacity 0.3s;"
-                        onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'">
-                        <i class="fas fa-search-plus" style="font-size: 3rem; color: #fff;"></i>
-                    </div>
-                </div>
-                <div style="margin-top: 20px;">
-                    <a href="rapport-stage-metro.pdf" class="btn-link" target="_blank" download>Télécharger le rapport</a>
+            <h3 style="margin-top: 40px; margin-bottom: 20px; color: #a0c4ff;">Exemple de Ticket Jira</h3>
+            <div class="bubble-container" style="justify-content: center;">
+                <div class="text-bubble" style="max-width: 100%; text-align: center;">
+                    <img src="Exemple ticket JIRA.png" alt="Exemple de ticket Jira" style="max-width: 100%; height: auto; border: 2px solid #a0c4ff; border-radius: 10px;" />
+                    <p style="margin-top: 10px;">Capture d'écran d'un ticket Jira utilisé pendant le stage Métro.</p>
                 </div>
             </div>
 
-            <div id="report-metro-modal"
-                style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center;">
-                <div
-                    style="position: relative; width: 80%; height: 90%; background: #fff; border-radius: 10px; padding: 10px;">
-                    <span
-                        style="position: absolute; top: 10px; right: 20px; font-size: 2rem; color: #000; cursor: pointer; z-index: 2001;"
-                        onclick="document.getElementById('report-metro-modal').style.display='none';">&times;</span>
-                    <iframe src="rapport-stage-metro.pdf" width="100%" height="100%"
-                        style="border: none; border-radius: 10px;"></iframe>
-                </div>
-            </div>
         </section>
 
         <section id="docs-tech">
@@ -629,7 +610,7 @@
                         <p style="margin-bottom: 12px;">Synthèse des réalisations professionnelles et validation des
                             acquis E5.</p>
                         <div class="btn-row" style="justify-content: flex-start; margin-top: 10px;">
-                            <a href="Tableau-Synthese-E5.pdf" class="btn-link" target="_blank">Tableau de synthèse
+                            <a href="Tableau-Synthese-E5 (1) (3).pdf" class="btn-link" target="_blank">Tableau de synthèse
                                 E5</a>
                         </div>
                     </div>
@@ -642,30 +623,21 @@
             <h2>Veilles Technologiques</h2>
             <div class="bubble-container">
                 <div class="text-bubble">
-                    <h3>🚨 Cybersécurité : Impact d'une cyber-attaque en entreprise</h3>
-                    <p>Les cyber-attaques, telles que les ransomwares ciblant les hôpitaux ou les grandes entreprises,
-                        ont des conséquences désastreuses sur la continuité d'activité. L'impact n'est pas que technique
-                        : il se chiffre en millions d'euros de pertes d'exploitation, en données clients compromises
-                        (implications RGPD), et en dommages irréversibles sur la réputation de l'entreprise.</p>
-                    <p style="margin-top:10px;">La paralysie d'infrastructures critiques exige une réponse à incident
-                        rapide et souligne l'importance vitale des sauvegardes déconnectées et des plans de reprise
-                        d'activité (PRA).</p>
+                    <h3>🧠 Ordinateur Quantique : Vers des Calculs Inaccessibles</h3>
+                    <p>L'ordinateur quantique promet de révolutionner le calcul en exploitant les qubits et les propriétés de la superposition et de l'intrication. Cette technologie vise à résoudre des problèmes qui restent hors de portée des ordinateurs classiques, notamment en cryptographie, optimisation et simulation de matériaux.</p>
+                    <p style="margin-top:10px;">Les enjeux métier concernent la recherche pharmaceutique, la conception de nouveaux matériaux, la finance quantitative et la cybersécurité. Les premiers usages pratiques émergent avec des algorithmes de chimie quantique, de factorisation et d'optimisation combinatoire.</p>
+                    <p style="margin-top:10px;">Cette veille suit les avancées en hardware quantique, les architectures de qubits, les plateformes cloud quantiques et les progrès des algorithmes quantiques applicables aux industries.</p>
                 </div>
                 <div class="text-bubble">
-                    <h3>🤖 La monétisation et la publicité dans les IA</h3>
-                    <p>Avec l'essor des IA génératives (ChatGPT, Copilot, Gemini), les grands acteurs de la tech
-                        commencent à intégrer des formats publicitaires et des modèles économiques d'abonnements.
-                        L'enjeu métier est double : rentabiliser les coûts d'infrastructure colossaux liés à
-                        l'entraînement et l'inférence de l'IA, tout en préservant l'expérience utilisateur et la
-                        neutralité apparente des réponses générées.</p>
+                    <h3>Linux : Évolutions et Adoption Croissante</h3>
+                    <p>Linux continue de s'affirmer comme un élément central de l'infrastructure informatique moderne. Avec les avancées du noyau Linux, l'essor du cloud computing (Docker, Kubernetes), et la domination de Linux sur les serveurs et les appareils embarqués, cette technologie transforme le paysage IT.</p>
+                    <p style="margin-top:10px;">Les enjeux métier incluent la sécurité renforcée, la performance optimisée, la réduction des coûts d'infrastructure et l'interopérabilité croissante. Les entreprises adoptent massivement Linux pour bénéficier de sa flexibilité, de son coût total de propriété réduit et de sa communauté active.</p>
+                    <p style="margin-top:10px;">Cette veille suit les dernières versions du noyau Linux, les distributions majeures (Ubuntu, RHEL, Debian), les innovations en containerisation et les tendances de sécurité du système d'exploitation.</p>
                 </div>
-                <div class="text-bubble">
-                    <h3>💾 Fluctuation du prix de la RAM : Impacts métiers</h3>
-                    <p>L'augmentation des prix des composants mémoire (RAM), due aux pénuries de semi-conducteurs et à
-                        la demande massive des centres de données dédiés à l'IA, impacte directement les budgets IT.
-                        Pour les entreprises, cela signifie un coût d'infrastructure matérielle en forte hausse, forçant
-                        souvent la DSI à repenser les architectures (finops, cloud hybride, optimisation des ressources)
-                        pour maîtriser les dépenses.</p>
+                <div class="text-bubble" style="width: 100%; text-align: center;">
+                    <h3>Google Alertes : Comment je m'informe</h3>
+                    <p>Utilisation de Google Alertes pour suivre les actualités et les nouveautés liées aux technologies et aux projets.</p>
+                    <img src="Google_Alerte.png" alt="Capture Google Alerte" style="max-width: 100%; height: auto; border: 2px solid #a0c4ff; border-radius: 10px; margin-top: 20px;" />
                 </div>
             </div>
         </section>
@@ -707,6 +679,17 @@
                     </div>
                     <div class="btn-row"><a href="Futuriste2.html" class="btn-link" target="_blank">Visiter le site
                             Iristech</a></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="project-m2l">
+            <h2>Project M2L</h2>
+            <div class="bubble-container">
+                <div class="text-bubble" style="align-self: center; text-align: center;">
+                    <h3>Organisation du projet sur Trello</h3>
+                    <p>Capture d'écran de l'organisation du projet M2L sur Trello.</p>
+                    <img src="Trello.png" alt="Capture Trello Project M2L" style="max-width: 100%; height: auto; border: 2px solid #a0c4ff; border-radius: 10px; margin-top: 20px;" />
                 </div>
             </div>
         </section>
