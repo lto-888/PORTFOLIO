@@ -643,6 +643,39 @@
             </div>
         </section>
 
+        <section id="attestation-stage">
+            <h2>Attestation de Stage</h2>
+            <div class="bubble-container">
+                <div class="text-bubble" style="align-self: center; text-align: center; max-width: 100%;">
+                    <h3>📄 Attestation de stage — Léo Texier</h3>
+                    <p style="margin-bottom: 20px;">Document officiel attestant de la réalisation de mon stage en entreprise.</p>
+                    <div style="position: relative; display: inline-block; cursor: pointer; transition: transform 0.3s;"
+                        onclick="document.getElementById('attestation-modal').style.display='flex';"
+                        onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        <iframe src="Leo_Texier-Attestation-de-Stage (2).pdf#toolbar=0&navpanes=0&scrollbar=0" width="300" height="400"
+                            style="border: 2px solid #a0c4ff; border-radius: 10px; pointer-events: none;"></iframe>
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.4); border-radius: 10px; opacity: 0; transition: opacity 0.3s;"
+                            onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'">
+                            <i class="fas fa-search-plus" style="font-size: 3rem; color: #fff;"></i>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <a href="Leo_Texier-Attestation-de-Stage (2).pdf" class="btn-link" target="_blank" download>Télécharger l'attestation</a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="attestation-modal"
+                style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center;">
+                <div style="position: relative; width: 80%; height: 90%; background: #fff; border-radius: 10px; padding: 10px;">
+                    <span style="position: absolute; top: 10px; right: 20px; font-size: 2rem; color: #000; cursor: pointer; z-index: 2001;"
+                        onclick="document.getElementById('attestation-modal').style.display='none';">&times;</span>
+                    <iframe src="Leo_Texier-Attestation-de-Stage (2).pdf" width="100%" height="100%"
+                        style="border: none; border-radius: 10px;"></iframe>
+                </div>
+            </div>
+        </section>
+
         <section id="veille">
             <h2>Veilles Technologiques</h2>
             <div class="bubble-container">
